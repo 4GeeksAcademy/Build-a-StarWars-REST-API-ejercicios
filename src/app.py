@@ -67,7 +67,7 @@ def handle_people():
 def handle_people_id(people_id):
 
     response_body = {
-        "msg": f"Hello, this is your GET /people/<int:people_id> response "
+        "msg": f"Hello, this is your GET /people/<int:people_id> response {people_id}"
 
     }
     
