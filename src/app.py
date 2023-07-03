@@ -73,6 +73,42 @@ def handle_people_id(people_id):
     
     return jsonify(response_body), 200
 
+@app.route('/planets/<int:planets_id>', methods=['GET'])
+def handle_planets_id(planets_id):
+
+    response_body = {
+        "msg": f"Hello, this is your GET /planets/<int:planets_id> response {planets_id}"
+
+    }
+    
+    return jsonify(response_body), 200
+
+@app.route('/vehicles/<int:vehicles_id>', methods=['GET'])
+def handle_vehicles_id(vehicles_id):
+
+    response_body = {
+        "msg": f"Hello, this is your GET /vehicles/<int:vehicles_id> response {vehicles_id}"
+
+    }
+    
+    return jsonify(response_body), 200
+
+@app.route('/favorite/planet', methods=['POST'])
+def handle_favorite_planet():
+
+    response_data = request.data
+    response_body = {
+        "msg": "Hello, this is your POST /favorite/planet response",
+        "data": response_data
+
+    }
+    
+    print(jsonify(response_body))
+    return jsonify(response_body), 200
+
+
+
+
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
