@@ -1,4 +1,4 @@
-from utils.db import db
+from utils import db
 
 class Planet(db.Model):
     __tablename__ = "planet"
