@@ -1,8 +1,10 @@
 from flask import Flask, Blueprint, request, jsonify
 
-people_routes = Blueprint("people_routes", __name__)
-
-@people_routes.route('/user/favorites', methods=['GET'])
+favorites_routes = Blueprint("favorites_routes", __name__)
+favorites_people_routes = Blueprint("favorites_people_routes", __name__)
+favorites_planet_routes = Blueprint("favorites_planet_routes", __name__)
+favorites_vehicle_routes = Blueprint("favorites_vehicle_routes", __name__)
+@favorites_routes.route('/user/favorites', methods=['GET'])
 def handle_user_favorites():
 
     response_body = {
@@ -12,7 +14,7 @@ def handle_user_favorites():
     return jsonify(response_body), 200
 
 
-@people_routes.route('/favorite/planet/<int:planet_id>', methods=['POST', 'DELETE'])
+@favorites_planet_routes.route('/favorite/planet/<int:planet_id>', methods=['POST', 'DELETE'])
 def handle_favorite_planet(planet_id):
 
     if request.method == 'POST':
@@ -32,7 +34,7 @@ def handle_favorite_planet(planet_id):
         return jsonify("delete"), 200
 
 
-@people_routes.route('/favorite/people/<int:people_id>', methods=['POST', 'DELETE'])
+@favorites_people_routes.route('/favorite/people/<int:people_id>', methods=['POST', 'DELETE'])
 def handle_favorite_people(people_id):
 
     if request.method == 'POST':
@@ -51,3 +53,20 @@ def handle_favorite_people(people_id):
         return jsonify("delete"), 200
 
 
+@favorites_vehicle_routes.route('/favorite/people/<int:people_id>', methods=['POST', 'DELETE'])
+def handle_favorite_people(people_id):
+
+    if request.method == 'POST':
+        response_data = request.data
+        response_body = {
+        "msg": f"Hello, this is your POST /favorite/people response {people_id}",
+        "data": response_data
+
+        }
+    
+        return jsonify(response_body), 200
+    
+    if request.method == 'DELETE':
+
+        print("Delete")
+        return jsonify("delete"), 200
