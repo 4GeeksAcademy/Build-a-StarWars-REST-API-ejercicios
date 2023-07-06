@@ -1,6 +1,8 @@
+from flask import Flask, Blueprint, request, jsonify
 
+people_routes = Blueprint("people_routes", __name__)
 
-@app.route('/user/favorites', methods=['GET'])
+@people_routes.route('/user/favorites', methods=['GET'])
 def handle_user_favorites():
 
     response_body = {
@@ -10,13 +12,13 @@ def handle_user_favorites():
     return jsonify(response_body), 200
 
 
-@app.route('/favorite/planet/<int:planet_id>', methods=['POST', 'DELETE'])
-def handle_favorite_planet():
+@people_routes.route('/favorite/planet/<int:planet_id>', methods=['POST', 'DELETE'])
+def handle_favorite_planet(planet_id):
 
     if request.method == 'POST':
         response_data = request.data
         response_body = {
-        "msg": "Hello, this is your POST /favorite/planet response",
+        "msg": f"Hello, this is your POST /favorite/planet response {planet_id}",
         "data": response_data
 
         }
@@ -25,23 +27,18 @@ def handle_favorite_planet():
         return jsonify(response_body), 200
     
     if request.method == 'DELETE':
-        response_data = request.data
-        response_body = {
-        "msg": "Hello, this is your DELETE /favorite/planet response",
-        "data": response_data
 
-        }
-    
-        return jsonify(response_body), 200
+        print("Delete")
+        return jsonify("delete"), 200
 
 
-@app.route('/favorite/people/<int:people_id>', methods=['POST', 'DELETE'])
-def handle_favorite_people():
+@people_routes.route('/favorite/people/<int:people_id>', methods=['POST', 'DELETE'])
+def handle_favorite_people(people_id):
 
     if request.method == 'POST':
         response_data = request.data
         response_body = {
-        "msg": "Hello, this is your POST /favorite/people response",
+        "msg": f"Hello, this is your POST /favorite/people response {people_id}",
         "data": response_data
 
         }
@@ -49,13 +46,8 @@ def handle_favorite_people():
         return jsonify(response_body), 200
     
     if request.method == 'DELETE':
-        response_data = request.data
-        response_body = {
-        "msg": "Hello, this is your DELETE /favorite/people response",
-        "data": response_data
 
-        }
-    
-        return jsonify(response_body), 200
+        print("Delete")
+        return jsonify("delete"), 200
 
 
