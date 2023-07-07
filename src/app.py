@@ -9,7 +9,7 @@ from flask import Flask, request, jsonify, url_for
 # from utils import APIException, generate_sitemap
 #from admin import setup_admin
 from models.user import User
-from utils import db
+from utils.db import db
 from routes.api import api
 #from models import Person
 
