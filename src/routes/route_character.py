@@ -1,9 +1,7 @@
 from flask import Flask, Blueprint, request, jsonify
+from models import Character
 
 people_routes = Blueprint("people_routes", __name__)
-
-
-app = Flask(__name__)
 
 @people_routes.route('/people', methods=['GET'])
 def handle_people():
@@ -24,5 +22,7 @@ def handle_people_id(people_id):
     }
     
     return jsonify(response_body), 200
+
+
 
 

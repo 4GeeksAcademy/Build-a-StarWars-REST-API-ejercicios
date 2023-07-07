@@ -1,7 +1,7 @@
 from utils.db import db
 
 class Character(db.Model):
-    __table_name__ = 'character'
+    __tablename__ = 'character'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     cargo_capacity = db.Column(db.String, nullable=False)

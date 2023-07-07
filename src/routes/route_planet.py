@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, request, jsonify
+from models import Planet
 
-planet_routes = Blueprint("people_routes", __name__)
+planet_routes = Blueprint("planet_routes", __name__)
 
 @planet_routes.route('/planets/<int:planets_id>', methods=['GET'])
 def handle_planets_id(planets_id):
@@ -11,3 +12,5 @@ def handle_planets_id(planets_id):
     }
     
     return jsonify(response_body), 200
+
+  
