@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint, request, jsonify
+from  models import Character
 
 people_routes = Blueprint("people_routes", __name__)
 
