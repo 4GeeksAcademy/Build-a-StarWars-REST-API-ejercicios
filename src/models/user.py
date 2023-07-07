@@ -9,9 +9,9 @@ class User(db.Model):
     
     def serialize(self):
         return {
-            self.id : id,
-            self.nickname : nickname,
-            self.email : email
+            'id': self.id,
+            'nickname': self.nickname,
+            'email': self.name
         }
         
     def __repr__(self):
