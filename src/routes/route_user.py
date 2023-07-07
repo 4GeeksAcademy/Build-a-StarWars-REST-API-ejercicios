@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, request, jsonify
+from models import User
 
-user_routes = Blueprint("people_routes", __name__)
+user_routes = Blueprint("user_routes", __name__)
 
 @user_routes.route('/user', methods=['GET','POST'])
 def handle_hello():
