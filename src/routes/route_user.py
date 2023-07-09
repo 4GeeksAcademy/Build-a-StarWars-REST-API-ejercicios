@@ -13,3 +13,8 @@ def handle_hello():
     if request.method == 'POST':
         print('users')
         return 'post user'
+
+@user_routes.route('/favorites', methods=['GET'])
+def handle_user_favorites():
+    return 'get user favorites'
+
