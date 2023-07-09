@@ -1,14 +1,14 @@
 from flask import Flask, Blueprint, request, jsonify
 from models import User
-
+from controller.user_controller import get
 user_routes = Blueprint("user_routes", __name__)
 
 @user_routes.route('/', methods=['GET','POST'])
 def handle_hello():
 
     if request.method == 'GET':
-        print('users')
-        return 'get users'
+        response = get()
+        return response
 
     if request.method == 'POST':
         print('users')
