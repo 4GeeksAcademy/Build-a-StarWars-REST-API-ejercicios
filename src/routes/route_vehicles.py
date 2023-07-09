@@ -7,7 +7,7 @@ vehicles_routes = Blueprint("vehicles_routes", __name__)
 def handle_vehicles():
 
     response_body = {
-        "msg": "Hello, this is your GET /vehicles/<int:vehicles_id>"
+        "msg": "get list vehicles"
 
     }
     
@@ -17,7 +17,7 @@ def handle_vehicles():
 def handle_vehicles_id(vehicles):
 
     response_body = {
-        "msg": f"Hello, this is your GET /vehicles/<int:vehicles_id> {vehicles}"
+        "msg": f"get vehicle {vehicles}"
 
     }
     

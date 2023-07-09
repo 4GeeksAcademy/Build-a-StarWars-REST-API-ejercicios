@@ -9,7 +9,7 @@ planet_routes = Blueprint("planet_routes", __name__)
 def handle_planets():
 
     response_body = {
-        "msg": "Hello, this is your GET /planets/<int:planets_id> response "
+        "msg": "get list planet "
 
     }
     
@@ -19,7 +19,7 @@ def handle_planets():
 def handle_planets_id(planets_id):
 
     response_body = {
-        "msg": f"Hello, this is your GET /planets/<int:planets_id> response {planets_id}"
+        "msg": f"get planet {planets_id}"
 
     }
     

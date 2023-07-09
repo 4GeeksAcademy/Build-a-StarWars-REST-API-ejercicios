@@ -6,7 +6,9 @@ people_routes = Blueprint("people_routes", __name__)
 @people_routes.route('/', methods=['GET'])
 def handle_people():
 
-    
+    response_body = {
+        'msg': 'get people'
+    }
 
     return jsonify(response_body), 200
 

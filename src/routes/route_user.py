@@ -14,7 +14,7 @@ def handle_hello():
         print('users')
         return 'post user'
 
-@user_routes.route('/favorites', methods=['GET'])
-def handle_user_favorites():
-    return 'get user favorites'
+@user_routes.route('/<int:user_id>/favorites', methods=['GET'])
+def handle_user_favorites(user_id):
+    return f'get favorites for user {user_id}'
 
