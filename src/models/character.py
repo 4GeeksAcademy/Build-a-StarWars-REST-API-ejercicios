@@ -17,3 +17,10 @@ class Character(db.Model):
     created = db.Column(db.DateTime)
     edited = db.Column(db.DateTime)
     favorites = db.relationship('Favorites', backref='character', lazy=True)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'url': self.url
+        }

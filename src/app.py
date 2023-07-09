@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask
-#from flask_migrate import Migrate
+from flask_migrate import Migrate
 
 
 from utils import db
@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 
 
-#MIGRATE = Migrate(app, db)
+MIGRATE = Migrate(app, db)
 db.init_app(app)
 
 with app.app_context():
@@ -24,6 +24,7 @@ with app.app_context():
 
 
 app.register_blueprint(api, url_prefix = '/api')
+
 @app.route('/')
 def index():
     return 'Hola mundo'

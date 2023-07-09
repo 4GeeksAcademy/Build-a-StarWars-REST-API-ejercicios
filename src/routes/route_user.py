@@ -3,11 +3,13 @@ from models import User
 
 user_routes = Blueprint("user_routes", __name__)
 
-@user_routes.route('/user', methods=['GET','POST'])
+@user_routes.route('/', methods=['GET','POST'])
 def handle_hello():
 
-    response_body = {
-        "msg": "Hello, this is your GET /user response "
-    }
+    if request.method == 'GET':
+        print('users')
+        return 'get users'
 
-    return jsonify(response_body), 200
+    if request.method == 'POST':
+        print('users')
+        return 'post user'
