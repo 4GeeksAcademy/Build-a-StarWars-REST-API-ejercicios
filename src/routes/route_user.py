@@ -7,14 +7,12 @@ user_routes = Blueprint("user_routes", __name__)
 def handle_hello():
 
     if request.method == 'GET':
-        response = get()
-        return response
-
-    if request.method == 'POST':
+        return get()
         
-        return 'post user'
+    if request.method == 'POST':
+        post()
 
 @user_routes.route('/<int:user_id>/favorites', methods=['GET'])
 def handle_user_favorites(user_id):
-    return f'get favorites for user {user_id}'
+    return user_id, 200 
 

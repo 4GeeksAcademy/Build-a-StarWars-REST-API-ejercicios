@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask
+from flask import Flask, render_template
 from flask_migrate import Migrate
 
 
@@ -13,7 +13,7 @@ from routes.api import api
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///star_wars.db"
 
 
 MIGRATE = Migrate(app, db)
@@ -27,7 +27,7 @@ app.register_blueprint(api, url_prefix = '/api')
 
 @app.route('/')
 def index():
-    return 'Hola mundo'
+    return render_template('index.html')
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':

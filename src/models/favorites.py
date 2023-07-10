@@ -11,11 +11,10 @@ class Favorites(db.Model):
     def __rep__(self):
         return f'id{self.id}'
 
-    def serialize(self):
+    def serializer():
         return{
-            'id': self.id,
-            'user': self.user_id,
-            'planet': self.planet_id,
-            'character' : self.character_id,
-            'vehicle' : self.vehicle_id
+            'id': fields.Integer,
+            'user_id': fields.Integer,
+            'planet_id': fields.Integer,
+            'character_id': fields.Integer,
         }

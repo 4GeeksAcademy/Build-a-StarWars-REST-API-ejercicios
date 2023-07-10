@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint, request, jsonify
 from models import Planet
-
+from controller.planet_controller import get, get_planet
 
 
 planet_routes = Blueprint("planet_routes", __name__)
@@ -9,8 +9,8 @@ planet_routes = Blueprint("planet_routes", __name__)
 def handle_planets():
 
     response_body = {
-        "msg": "get list planet "
-
+        "msg": "get list planet ",
+        'data': get()
     }
     
     return jsonify(response_body), 200
@@ -19,7 +19,8 @@ def handle_planets():
 def handle_planets_id(planets_id):
 
     response_body = {
-        "msg": f"get planet {planets_id}"
+        "msg": f"get planet {planets_id}",
+        'data': get_planet(planets_id)
 
     }
     

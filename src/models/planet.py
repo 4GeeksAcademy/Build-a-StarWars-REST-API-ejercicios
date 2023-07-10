@@ -19,3 +19,16 @@ class Planet(db.Model):
     edited = db.Column(db.DateTime, nullable=False)
     url = db.Column(db.String, nullable=False, unique=True)
     favorites = db.relationship('Favorites', backref='planet', lazy=True)
+    
+    def serialize(self):
+        return{
+            'id': self.id,
+            'name': self.name,
+            'climate': self.climate,
+            'created': self.created,
+            'diameter': self.diameter,
+            'gravity': self.gravity,
+            'population': self.population,
+            'surface_water': self.surface_water,
+            'terrain': self.terrain,
+        }

@@ -19,3 +19,24 @@ class Vehicle(db.Model):
     created = db.Column(db.DateTime, nullable=False)
     edited = db.Column(db.DateTime, nullable=False)
     favorites = db.relationship('Favorites', backref='vehicle', lazy=True)
+    
+    def serialize(self):
+        return {
+                    'id': self.id,
+                    'name': self.name,
+                    'cargo_capacity': self.cargo_capacity,
+                    'created': self.created,
+                    'crew': self.crew,
+                    'length': self.length,
+                   'manufacturer': self.manufacturer,
+                   'max_atmosphering_speed': self.max_atmosphering_speed,
+                   'model': self.model,
+                   'vehicle_class': self.vehicle_class,
+                    'passengers': self.passengers,
+                    'pilots': self.pilots,
+                    'films': self.films,
+                    'url': self.url,
+                    'created': self.created,
+                    'edited': self.edited,
+                    'favorites': self.favorites
+                }
