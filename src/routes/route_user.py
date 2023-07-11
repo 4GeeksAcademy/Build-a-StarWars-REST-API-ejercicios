@@ -15,4 +15,3 @@ def handle_hello():
 @user_routes.route('/<int:user_id>/favorites', methods=['GET'])
 def handle_user_favorites(user_id):
     return user_id, 200 
-
