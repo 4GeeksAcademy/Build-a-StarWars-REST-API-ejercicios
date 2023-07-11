@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from flask_migrate import Migrate
 
 
@@ -27,7 +27,8 @@ app.register_blueprint(api, url_prefix = '/api')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ruta_html = 'front/starwars_blog/dist/index.html'
+    return send_from_directory(app.static_folder, ruta_html)
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
