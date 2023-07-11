@@ -5,8 +5,8 @@ from .route_favorites import favorites_routes
 from .route_planet import planet_routes
 from .route_user import user_routes
 from .route_vehicles import vehicles_routes
-from .user_login import user_login
-from .user_register import user_register
+from .route_user_login import user_login
+from .route_user_register import user_register
 
 api = Blueprint('api', __name__)
 

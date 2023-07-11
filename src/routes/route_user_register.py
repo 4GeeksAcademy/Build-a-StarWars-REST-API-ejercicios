@@ -2,9 +2,9 @@ from flask import Flask, jsonify, request, Blueprint
 import bcrypt
 from models.user import User
 
-user_registrer = Blueprint('user_registrer', __name__)
+user_register = Blueprint('user_register', __name__)
 
-@user_registrer.route('/', methods=['POST'])
+@user_register.route('/', methods=['POST'])
 def register():
     if request.method == 'POST':
         nickname = request.get('nickname')
