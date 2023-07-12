@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from models.user import User
+from models.favorites import Favorites
 from utils import db
 import json
 import bcrypt
@@ -25,3 +26,9 @@ def post():
     db.session.add(user)
     db.session.commit()
     return jsonify(user.serialize())
+
+def get_user_favorites(user_id):
+    favorites = Favorites.query.filter_by(user_id=user_id).all()
+    if not favorites:
+            return {'message': 'No favorites found'}
+    return jsonify(favorites.serialize())
