@@ -10,8 +10,8 @@ from utils import db
 from routes.api import api
 #from models import Person
 
-stattic_path_index = os.path.dirname(os.path.abspath(__file__))
-stattic_folder = os.path.join(stattic_path_index,'static')
+
+public_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'public')
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
@@ -29,7 +29,8 @@ app.register_blueprint(api, url_prefix = '/api')
 
 @app.route('/')
 def index():
-    return send_from_directory(stattic_folder, 'index.html')
+    print(public_folder)
+    return send_from_directory(public_folder, 'index.html')
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
