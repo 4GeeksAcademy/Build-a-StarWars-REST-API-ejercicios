@@ -30,7 +30,7 @@ app.register_blueprint(api, url_prefix = '/api')
 @app.route('/')
 def index():
     print(public_folder)
-    return send_from_directory(public_folder, 'index.html')
+    return 'working'
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
