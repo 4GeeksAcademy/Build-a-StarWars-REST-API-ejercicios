@@ -26,11 +26,12 @@ with app.app_context():
 
 
 app.register_blueprint(api, url_prefix = '/api')
-
+@app.route('/<path:path>')
 @app.route('/')
-def index():
+def index(path='index.html'):
+    
     print(public_folder)
-    return 'working'
+    return send_from_directory(public_folder, path)
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
