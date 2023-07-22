@@ -4,16 +4,12 @@ class Character(db.Model):
     __tablename__ = 'character'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    cargo_capacity = db.Column(db.String, nullable=False)
-    consumables = db.Column(db.String, nullable=False)
-    crew = db.Column(db.String, nullable=False)
-    cargo_manufacturercapacity = db.Column(db.String, nullable=False)
-    max_atmosphering_speed = db.Column(db.String, nullable=False)
-    pilots = db.Column(db.String, nullable=False)
-    passengers = db.Column(db.String, nullable=False)
-    films = db.Column(db.String, nullable=False)
-    vehicle_class = db.Column(db.String, nullable=False)
-    url = db.Column(db.String, nullable=False)
+    birth_year = db.Column(db.Integer)
+    gender = db.Column(db.String)
+    height = db.Column(db.Integer)
+    skin_color = db.Column(db.String)
+    eye_color = db.Column(db.String)
+    url = db.Column(db.String)
     created = db.Column(db.DateTime)
     edited = db.Column(db.DateTime)
     favorites = db.relationship('Favorites', backref='character', lazy=True)
@@ -22,5 +18,10 @@ class Character(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'birth_year': self.birth_year,
+            'gender': self.gender,
+            'height': self.height,
+            'skin_color': self.skin_color,
+            'eye_color': self.eye_color,
             'url': self.url
         }

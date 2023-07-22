@@ -6,7 +6,7 @@ class Favorites(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     planet_id = db.Column(db.Integer, db.ForeignKey('planet.id'))
     character_id = db.Column(db.Integer, db.ForeignKey('character.id'))
-    vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'))
+    
 
     def __rep__(self):
         return f'id{self.id}'
