@@ -1,6 +1,8 @@
+from utils.db import db
 import bcrypt
 from models.character import Character
 from flask import Flask, request, jsonify
+import json
 
 def get():
     peoples = Character.query.all()
@@ -17,9 +19,9 @@ def get_people(id):
 def set_chartacter(request):
     list_characters = request
     for character in list_characters:
-        parsed_character = json.loads(chatracter)
+        parsed_character = json.loads(character)
         character_in_db = Character.query.filter_by(name=parsed_character.name).first()
-        if planet_in_db is None:  
+        if character_in_db is None:  
             new_character = Character()
             new_character.name = parsed_character.get('name')
             new_character.birth_year = parsed_character.get('birth_year')

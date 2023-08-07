@@ -9,14 +9,18 @@ from flask_migrate import Migrate
 from utils import db
 from routes.api import api
 #from models import Person
-
-
+from flask_jwt_extended import JWTManager
+from flask_bcrypt import Bcrypt
 public_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'public')
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///star_wars.db"
 
+app.config["JWT_SECRET_KEY"] = "super-secret"
+jwt = JWTManager(app)
+
+bcrypt = Bcrypt(app)
 
 MIGRATE = Migrate(app, db)
 db.init_app(app)

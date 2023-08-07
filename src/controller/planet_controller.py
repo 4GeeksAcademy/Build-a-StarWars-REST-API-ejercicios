@@ -1,3 +1,5 @@
+
+from utils.db import db
 import bcrypt
 from models.planet import Planet
 from flask import Flask, jsonify, request

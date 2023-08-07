@@ -1,24 +1,41 @@
 from flask import Flask, request, jsonify
-import bcrypt
+
 from models.user import User
+from utils.db import db
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+import json
+from flask_bcrypt import Bcrypt
 
-
-def register(request, *args, **kwargs):
-    username = request.get('username')
-    password = request.get('password')
-    if User.query.filter_by(username=username).first() is not None:
+bcrypt = Bcrypt()
+def register():
+    
+    data = json.loads(request.data)
+    print(data)
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+    pw_hash = bcrypt.generate_password_hash(password)
+    if User.query.filter_by(nickname=username).first() is not None:
         return jsonify({'message': 'Username already taken'})
-    user = User(username=username, password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))
+    user = User()
+    user.nickname = username
+    user.password = pw_hash
+    user.email = email
     db.session.add(user)
     db.session.commit()
-    return jsonify(user.serialize())
+    token = create_access_token(identity=user.serialize())
+    return jsonify({'user' : user.serialize(), 'token': token}), 200
 
-def login(request, *args, **kwargs):
-    username = request.get('username')
-    password = request.get('password')
-    user = User.query.filter_by(username=username).first()
-    if user is not None and bcrypt.checkpw(password.encode('utf-8'), user.password):
-        return jsonify(user.serialize())
+def login():
+    data = json.loads(request.data)
+    print(data)
+    username = data.get('username')
+    password = data.get('password')
+    user = User.query.filter_by(nickname=username).first()
+    print(user.nickname)
+    if user is not None and bcrypt.check_password_hash(user.password, password):
+         token = create_access_token(identity=user.serialize())
+         return jsonify({'user' : user.serialize(), 'token': token})
     else:
         return jsonify({'message': 'Invalid username or password'})
     
