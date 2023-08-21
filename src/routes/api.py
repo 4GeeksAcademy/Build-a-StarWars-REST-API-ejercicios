@@ -7,6 +7,7 @@ from .route_user import user_routes
 
 from .route_user_auth import user_auth
 from .route_user_register import user_register
+from .setup_routes import setup_routes
 
 api = Blueprint('api', __name__)
 
@@ -16,3 +17,4 @@ api.register_blueprint(planet_routes, url_prefix='/planet')
 api.register_blueprint(user_routes, url_prefix='/user')
 api.register_blueprint(user_auth, url_prefix='/auth')
 api.register_blueprint(user_register, url_prefix='/register')
+api.register_blueprint(setup_routes, url_prefix="/setup")

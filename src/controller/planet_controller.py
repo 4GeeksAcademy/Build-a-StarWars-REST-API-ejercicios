@@ -4,6 +4,7 @@ import bcrypt
 from models.planet import Planet
 from flask import Flask, jsonify, request
 import json
+import datetime as DateTime
 
 def get():
     Planets = Planet.query.all()
@@ -19,6 +20,9 @@ def get_planet(id):
 
 def set_planets():
     list_planets = request
+    if(len(list_planets) == 0):
+        return {"message": "No planets found."}
+    
     for planet in list_planets:
         parsed_planet = json.loads(planet)
         planet_in_db = Planet.query.filter_by(name=parsed_planet.name).first()
