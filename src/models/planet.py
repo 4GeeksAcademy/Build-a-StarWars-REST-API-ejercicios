@@ -19,13 +19,13 @@ class Planet(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "height": self.height,
-            "mass": self.mass,
-            "hair_color": self.hair_color,
-            "skin_color": self.skin_color,
-            "eye_color": self.eye_color,
-            "birth_year": self.birth_year,
-            "gender": self.gender,
+            "climate": self.climate,
+            "diameter": self.diameter,
+            "gravity": self.gravity,
+            "orbital_period": self.orbital_period,
+            "population": self.population,
+            "rotation_period": self.rotation_period,
+            "surface_water": self.surface_water,
             "url": self.url,
         }
         

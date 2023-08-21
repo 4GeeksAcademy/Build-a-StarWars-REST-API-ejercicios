@@ -21,6 +21,7 @@ flask-admin = "*"
 colorama = "*"
 flask-jwt-extended = "*"
 flask-bcrypt = "*"
+requests = "*"
 
 [requires]
 python_version = "*"

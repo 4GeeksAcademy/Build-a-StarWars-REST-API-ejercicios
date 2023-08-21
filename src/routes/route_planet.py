@@ -7,13 +7,7 @@ planet_routes = Blueprint("planet_routes", __name__)
 
 @planet_routes.route('/', methods=['GET'])
 def handle_planets():
-
-    response_body = {
-        "msg": "get list planet ",
-        'data': get()
-    }
-    
-    return jsonify(response_body), 200
+    return get()
 
 @planet_routes.route('/<int:planets_id>', methods=['GET'])
 def handle_planets_id(planets_id):

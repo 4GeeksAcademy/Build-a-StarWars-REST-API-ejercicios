@@ -8,9 +8,9 @@ import datetime as DateTime
 
 def get():
     Planets = Planet.query.all()
-    if len(Planets) == 0:
-        return {"message": "No Planets found."}
-    return [planet.serialize() for planet in Planets]
+    if len(Planets) == 0 or Planets is None:
+        return [], 400
+    return [planet.serialize() for planet in Planets], 200
 
 def get_planet(id):
     planet = Planet.query.filter_by(id=id).first()

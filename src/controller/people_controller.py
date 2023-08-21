@@ -7,14 +7,15 @@ import json
 def get():
     peoples = Character.query.all()
     if len(peoples) == 0:
-        return jsonify({"message": "No people found"})
+        return []
     return [jsonify(peoples.serialize() for peoples in peoples)]
 
 def get_people(id):
     people = Character.query.filter_by(id=id).first()
-    if not people:
+    if people is None:
         return jsonify({"message": "No people found"})
-    return jsonify(people.serialize())
+    if people is not None:
+        return jsonify({people.serialize()})
 
 def set_chartacter(request):
     list_characters = request

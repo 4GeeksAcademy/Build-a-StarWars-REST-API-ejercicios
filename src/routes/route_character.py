@@ -15,14 +15,8 @@ def handle_people():
 
 
 @people_routes.route('/<int:people_id>', methods=['GET'])
-def handle_people_id(people_id):
-
-    response_body = {
-        "msg": f"Hello, this is your GET /people/<int:people_id> response {people_id}",
-        'data' : get(people_id)
-    }
-    
-    return jsonify(response_body), 200
+def handle_people_id(people_id): 
+    return  get_people(people_id)
 
 
 @people_routes.route('/setpeople', methods=['POST'])

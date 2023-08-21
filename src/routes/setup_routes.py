@@ -1,8 +1,8 @@
 from flask import Blueprint
 
-from tools import db
-from models import Character, Planet, Vehicle
-from controller.add_data_to_db import setupCharacters, setupPlanets, setupVehicles
+from utils import db
+from models import Character, Planet
+from controller.add_data_to_db import setupCharacters, setupPlanets
 
 setup_routes = Blueprint('setup_routs', __name__)
 

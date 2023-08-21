@@ -1,6 +1,6 @@
-from flask import requests
+import requests
 from utils import db
-from models import Character, Planet, Vehicle
+from models import Character, Planet
 
 def setupCharacters ():
     if db.session.query(Character).count() == 0:
