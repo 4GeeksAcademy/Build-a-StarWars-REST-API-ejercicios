@@ -1,9 +1,9 @@
-from models.favorites import Favorite
-from models.users import User
+from models.favorites import Favorites
+from models.user import User
 from models.planet import Planet
 from models.character import Character
 from utils import db
-from flask import Flask, jsnoify, request
+from flask import Flask, jsonify, request
 
 def set_favorite(request):
     user_id = request.get('user_id')

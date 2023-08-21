@@ -5,6 +5,7 @@ import os
 from flask import Flask, render_template, send_from_directory
 from flask_migrate import Migrate
 
+from flask_cors import CORS
 
 from utils import db
 from routes.api import api
@@ -13,6 +14,7 @@ from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
 public_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'public')
 app = Flask(__name__)
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///star_wars.db"

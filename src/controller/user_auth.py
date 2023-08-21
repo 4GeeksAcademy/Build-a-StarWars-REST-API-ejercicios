@@ -11,7 +11,7 @@ def register():
     
     data = json.loads(request.data)
     print(data)
-    username = data.get('username')
+    username = data.get('nickname')
     password = data.get('password')
     email = data.get('email')
     pw_hash = bcrypt.generate_password_hash(password)
@@ -29,10 +29,9 @@ def register():
 def login():
     data = json.loads(request.data)
     print(data)
-    username = data.get('username')
+    username = data.get('nickname')
     password = data.get('password')
     user = User.query.filter_by(nickname=username).first()
-    print(user.nickname)
     if user is not None and bcrypt.check_password_hash(user.password, password):
          token = create_access_token(identity=user.serialize())
          return jsonify({'user' : user.serialize(), 'token': token})

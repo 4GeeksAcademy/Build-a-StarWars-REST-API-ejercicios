@@ -1,12 +1,11 @@
 import { useContext, createContext, useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import getCharacters from "../services/characters";
 import getCharactersDetails from "../services/charactersDetails";
 import getPlanets from "../services/planets";
 import getPlanetsDetails from "../services/planetsDetails";
-import login from "../services/login";
-import register from "../services/register";
 
 const AppContext = createContext();
 
@@ -22,17 +21,12 @@ export const AppProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
   const [userInput, setUserInput] = useState({});
   const [token, setToken] = useState("");
+  const [userData, setUserData] = useState({});
+
+  const navigate = useNavigate();
 
   const handleUserInput = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
-  };
-  const handleOnSubmitLogin = (e) => {
-    e.preventDefault();
-    login();
-  };
-  const handleOnSubmitRegister = (e) => {
-    e.preventDefault();
-    register();
   };
 
   useEffect(() => {
@@ -118,7 +112,64 @@ export const AppProvider = ({ children }) => {
     setFavoritesList([...newList]);
   };
 
-  console.log(allDetailData);
+  const handleOnSubmitLogin = (e) => {
+    e.preventDefault();
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let raw = JSON.stringify(userInput);
+
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://127.0.0.1:3000/api/auth/login", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const data = result;
+        if (data.token) {
+          setToken(data.token);
+          setIsLogin(true);
+          setUserData(data.user);
+          navigate("/private");
+        }
+      })
+      .catch((error) => console.log("error", error));
+
+    setUserInput({});
+  };
+  const handleOnSubmitRegister = (e) => {
+    e.preventDefault();
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let raw = JSON.stringify(userInput);
+
+    let requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("http://127.0.0.1:3000/api/auth/register", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        const data = result;
+        if (data.token) {
+          setToken(data.token);
+          setIsLogin(true);
+          setUserData(data.user);
+          navigate("/private");
+        }
+      })
+      .catch((error) => console.log("error", error));
+
+    setUserInput({});
+  };
 
   const actions = {
     handleDeleteFavorites,
@@ -126,6 +177,8 @@ export const AppProvider = ({ children }) => {
     handleUserInput,
     handleOnSubmitLogin,
     handleOnSubmitRegister,
+    setToken,
+    setIsLogin,
   };
 
   const store = {
@@ -139,6 +192,7 @@ export const AppProvider = ({ children }) => {
     allDetailData,
     isLogin,
     userInput,
+    userData,
   };
 
   useEffect(
